@@ -1,0 +1,60 @@
+﻿/* My stylesheet */
+body
+{
+    background-color: #e6e6e6;
+    background-color: #f8f8f8;
+}
+
+div#post-area
+{
+  width: 80vw;
+}
+div.post
+  {
+    font-family: Verdana;
+    margin: 15px;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    background-color: #f8f8f8;
+    border: solid 3px #e6e6e6;
+  }
+  div.post-title
+  {
+    color: #555;
+    cursor: pointer;
+    text-align: center;
+    font-size: 30px;
+    font-weight: lighter;
+  }
+
+  div.post-date
+  {
+    background-color: #303030;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  div.post-content
+  {
+    padding-left: 12%;
+    padding-right: 12%;
+    font-size: 14px;
+    margin: 50px;
+  }
+
+  div.post-footer
+  {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+nav.navbar
+  {
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+  }
