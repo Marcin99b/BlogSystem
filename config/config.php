@@ -8,3 +8,4 @@ $login = 'root';
 $password = '';
 $encoding = 'utf-8';
 $path = 'http://localhost';
+//abvc
