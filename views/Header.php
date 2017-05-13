@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href=<?= $this -> path; ?> />
+    <base href='<?= $this -> path; ?>/' />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this -> pageTitle; ?></title>

@@ -19,10 +19,10 @@ body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAA
                     Sprawdź czy poprawnie wpisałeś/aś adres
                 </div>
                 <div class="error-actions">
-                    <a href=<?= $this -> path; ?> class="btn btn-primary btn-lg">
+                    <a href='<?= $this -> path; ?>' class="btn btn-primary btn-lg">
                       </span>
                         Strona główna </a>
-                    <a href=<?= $this -> path; ?>/Index/Contact class="btn btn-default btn-lg">
+                    <a href='<?= $this -> path; ?>/Index/Contact' class="btn btn-default btn-lg">
                     </span> Skontaktuj się z nami </a>
                 </div>
             </div>

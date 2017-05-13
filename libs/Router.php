@@ -4,6 +4,7 @@ class Router
 {
   function __construct()
   {
+
     $this -> request = $_GET['url'];
     $this -> request = rtrim($this -> request, "/");
     $this -> params =  explode("/", $this -> request);
@@ -20,6 +21,7 @@ class Router
     }
     else
     {
+      $this -> path = 'http://' .$_SERVER['HTTP_HOST']. rtrim($_SERVER['PHP_SELF'], '/index.php');
       $this -> pageTitle = "Wystąpił błąd";
       require_once 'views/Header.php';
       require_once 'views/NotFound.php';
