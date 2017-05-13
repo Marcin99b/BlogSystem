@@ -3,8 +3,8 @@
 
 //Login to database
 $hostname = 'localhost';
-$dbname = 'marcin99b';
+$dbname = '';
 $login = 'root';
 $password = '';
 $encoding = 'utf-8';
-$path = 'http://localhost:81/project';
+$path = 'http://localhost';
