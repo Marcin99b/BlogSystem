@@ -16,7 +16,7 @@
                        <tr>
                         <tr>
                           <td>Email</td>
-                          <td><a href="mailto:marcin_99999@interia.pl">marcin_99999@interia.pl</a></td>
+                          <td><a href="mailto:marcin_99999@interia.pl">marcin.bigos99@gmail.com</a></td>
                         </tr>
                           <td>numer telefonu</td>
                           <td>+48 (Wkrótce zostanie dodany)</td>
