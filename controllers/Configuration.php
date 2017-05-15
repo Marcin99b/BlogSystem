@@ -17,6 +17,19 @@ class Configuration extends Controller
   }
   private function create()
   {
+    if(isSet($_POST['hostname']))
+    {
+      $configParams = [
+        'hostname' => $_POST['hostname'],
+        'dbname' => $_POST['dbname'],
+        'login' => $_POST['login'],
+        'password' => $_POST['password'],
+        'encoding' => $_POST['encoding'],
+      ];
+      $this -> model -> createNewConfigFile($configParams);
+
+    }
+
     $this -> view -> render();
   }
 }
