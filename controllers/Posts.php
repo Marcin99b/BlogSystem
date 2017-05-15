@@ -9,7 +9,7 @@ class Posts extends Controller
     $this -> model = new PostModel();
 
     $this -> view -> controller = "Posts";
-
+    //Get params from url. If params == null, use default value
     $this -> view -> page = "List";
     if(isSet($params[1])) $this -> view -> page = $params[1];
 
@@ -28,6 +28,7 @@ class Posts extends Controller
 
   private function add($method, $id)
   {
+    //use this method only if user write 'title' of post
     if(isSet($_POST['title']))
     {
     $title = $_POST['title'];
@@ -43,8 +44,9 @@ class Posts extends Controller
 
   private function list($method, $id)
   {
+    //Get info about pages
     $pagesInfo = $this -> model -> pagination($id);
-
+    //Use info about pages, and get correct posts from database
     $fromPage = $pagesInfo['from'];
     $numberPage = $pagesInfo['number'];
 
@@ -59,6 +61,7 @@ class Posts extends Controller
 
   private function edit($method, $id)
   {
+    //use this method only if user write 'id' of post
     if(isSet($_POST['postId']))
     {
     $id = $_POST['postId'];
@@ -75,8 +78,9 @@ class Posts extends Controller
   }
   private function delete($method, $id)
   {
+    //Get info about pages
     $pagesInfo = $this -> model -> pagination($id);
-
+    //Use info about pages, and get correct posts from database
     $fromPage = $pagesInfo['from'];
     $numberPage = $pagesInfo['number'];
 
@@ -84,8 +88,7 @@ class Posts extends Controller
     $this -> view -> pageId = $id;
     $this -> view -> maxPage = $pagesInfo['max'];
 
-
-
+    //use this method only if user write 'id' of post
     if(isSet($_POST['deleteId']))
     {
     $id = $_POST['deleteId'];

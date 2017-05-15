@@ -9,6 +9,7 @@ class Configuration extends Controller
     $this -> model = new ConfigModel();
 
     $this -> view -> controller = "Configuration";
+    //Get params from url. If params == null, use default value
     $this -> view -> page = "Create";
 
     if(isSet($params[1])) $this -> view -> page = $params[1];
@@ -17,6 +18,7 @@ class Configuration extends Controller
   }
   private function create()
   {
+    //Use this method only if user write 'hostname'
     if(isSet($_POST['hostname']))
     {
       $configParams = [

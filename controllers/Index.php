@@ -9,7 +9,7 @@ class Index extends Controller
     $this -> model = new PostModel();
 
     $this -> view -> controller = "Index";
-
+    //Get params from url. If params == null, use default value
     $this -> view -> page = "Blog";
     if(isSet($params[1])) $this -> view -> page = $params[1];
 
@@ -28,8 +28,9 @@ class Index extends Controller
 
   private function blog($method, $id)
   {
+    //Get info about pages
     $pagesInfo = $this -> model -> pagination($id);
-
+    //Use info about pages, and get correct posts from database
     $fromPage = $pagesInfo['from'];
     $numberPage = $pagesInfo['number'];
 

@@ -11,6 +11,7 @@ class PostModel extends Model
   {
     if ($title != null && $content != null)
     {
+    //Prepare data of date
     $date = getdate(date("U"));
       $day = $date['mday'];
       $month = $date['mon'];
@@ -39,7 +40,7 @@ class PostModel extends Model
 
     }
   }
-
+  //Select post (write query in controller)
   public function selectPost($query)
   {
     $postToSelect = $this -> pdo ->query($query);
@@ -85,7 +86,7 @@ class PostModel extends Model
   {
     if($id == 1) $fromPage = 0;
     else $fromPage = ($id -1) * 10;
-
+    //Calc number of pages
     $countPost = $this -> pdo ->query('SELECT COUNT(id) AS countPost FROM `posts`')->fetch()['countPost'];
 
     $numberPage = 10;
@@ -94,7 +95,7 @@ class PostModel extends Model
 
     $maxPage = round($countPost/10);
     if($maxPage < $countPost) $maxPage++;
-
+    //Prepare info about pages, to return
     $pageInfo =
     [
       'from' => $fromPage,

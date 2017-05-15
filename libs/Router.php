@@ -21,6 +21,7 @@ class Router
     }
     else
     {
+      //Add info about path, to views
       $this -> path = 'http://' .$_SERVER['HTTP_HOST']. rtrim($_SERVER['PHP_SELF'], '/index.php');
       $this -> pageTitle = "Wystąpił błąd";
       require_once 'views/Header.php';

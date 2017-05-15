@@ -4,6 +4,7 @@ class Model
 {
   function __construct()
   {
+    //Add info about path, to views
     $this -> path = 'http://' .$_SERVER['HTTP_HOST']. rtrim($_SERVER['PHP_SELF'], '/index.php');
 
     $configFilePath = 'config/config.php';
