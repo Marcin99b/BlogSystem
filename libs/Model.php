@@ -11,8 +11,6 @@ class Model
 
     $userTryChangeConfig = boolval((strstr(ucfirst(rtrim($_GET['url'], "/")), 'Configuration')));
 
-
-
     if((file_exists($configFilePath)) && !($userTryChangeConfig))
     {
       try
@@ -22,12 +20,34 @@ class Model
         $this -> pdo = new PDO( 'mysql:host='. $hostname .';dbname=' . $dbname . ';encoding='. $encoding .';',
           $login, $password,
           array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
+/*
+          //Tables validation (Coming soon)
+          $testUserTable = $this -> pdo -> query('');
+          $testPostsTable = $this -> pdo -> query('');
+
+          var_dump($testUserTable);
+          var_dump($testPostsTable);
+*/
+          //For working (To change!!)
+            $testUserTable = true;
+            $testPostsTable = true;
+
+          if($testUserTable && $testPostsTable)
+            session_start();
+          else
+            $this -> badConfig();
+
+
+
+
       }
       catch (exception $e)
       {
         $showErrorConnection = false;
         if($showErrorConnection)
           echo '<pre>' . $e;
+        else
         $this -> badConfig();
       }
 

@@ -1,10 +1,36 @@
 <?php
 
-class PostModel extends Model
+class UserModel extends Model
 {
   function __construct()
   {
     parent::__construct();
+  }
+
+  public function loginUser($login, $password)
+  {
+    if (isSet($login) && isSet($password))
+    {
+      //Select password (and permission) as login in form
+      //Script get permission, because this isn't dangerous, and one query is faster than two
+      $loginConnect = $this -> pdo->prepare( 'SELECT password, permission FROM `users` WHERE login = :login' );
+        $loginConnect->bindParam(':login', $login);
+        $loginConnect->execute();
+
+      //Prepare password from database, to verification in next step
+      $resultLogin = $loginConnect->fetch();
+      $hash = $resultLogin['password'];
+
+      //Check if password in input is the same as in database
+      if( password_verify( $password , $hash ) == true )
+      {
+      //User is logged to account, and session is started
+        $_SESSION['logged'] = true;
+        $_SESSION['userLogin'] = $login;
+        //Add permission
+        $_SESSION['permission'] = $resultLogin['permission'];
+      }
+    }
   }
 
   public function addUser()
