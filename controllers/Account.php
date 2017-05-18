@@ -24,7 +24,7 @@ class Account extends Controller
   }
   private function login()
   {
-    $this -> model -> loginUser('admin', 'admin');
+    $this -> model -> loginUser('moder', 'moder');
     echo $_SESSION['userLogin'];
     $this -> view -> render();
   }

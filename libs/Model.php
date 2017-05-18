@@ -21,18 +21,14 @@ class Model
           $login, $password,
           array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
-/*
-          //Tables validation (Coming soon)
-          $testUserTable = $this -> pdo -> query('');
-          $testPostsTable = $this -> pdo -> query('');
 
-          var_dump($testUserTable);
-          var_dump($testPostsTable);
-*/
-          //For working (To change!!)
-            $testUserTable = true;
-            $testPostsTable = true;
+          //Tables validation (Return true if table is exist)
 
+          $testUserTable = ( $this -> pdo -> query('SHOW TABLES LIKE "users"')->fetch() != false);
+
+          $testPostsTable = ( $this -> pdo -> query('SHOW TABLES LIKE "posts"')->fetch() != false );
+
+          //If both tables is exist, start session, else redirect to "bad config" page, by use bacConfig() method
           if($testUserTable && $testPostsTable)
             session_start();
           else
