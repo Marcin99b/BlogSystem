@@ -82,28 +82,34 @@ class PostModel extends Model
     }
   }
 
-  public function pagination($id = 1)
+  public function pagination($idCurrentPage = 1)
   {
-    if($id == 1) $fromPage = 0;
-    else $fromPage = ($id -1) * 10;
+    /*$idCurrentPage==1 return posts 0-10;
+      $idCurrentPage==2 return posts 10-20; etc.*/
+    $fromNumberPostInDatabase = ($idCurrentPage -1) * 10;
+
     //Calc number of pages
-    $countPost = $this -> pdo ->query('SELECT COUNT(id) AS countPost FROM `posts`')->fetch()['countPost'];
+    $countPostInDatabase = $this -> pdo ->query('SELECT COUNT(id) AS countPost FROM `posts`')->fetch()['countPost'];
 
-    $numberPage = 10;
+    //Default numbers posts in one page
+    $numberPostsToShow = 10;
 
-    if(($fromPage + $numberPage) > $countPost) $numberPage = $countPost - $numberPage;
+    //If show last page, and can't show default number of posts, show all others
+    if(($fromNumberPostInDatabase + $numberPostsToShow) > $countPostInDatabase)
+      $numberPostsToShow = $countPostInDatabase - $fromNumberPostInDatabase;
 
-    $maxPage = round($countPost/10);
-    if($maxPage < $countPost) $maxPage++;
+    $highestNumberInPagination = round($countPostInDatabase/10);
+    if($highestNumberInPagination < $countPostInDatabase)
+      $highestNumberInPagination++;
+
     //Prepare info about pages, to return
-    $pageInfo =
+    $infoToReturn =
     [
-      'from' => $fromPage,
-      'number' => $numberPage,
-      'max' => $maxPage
+      'from' => $fromNumberPostInDatabase,
+      'number' => $numberPostsToShow,
+      'max' => $highestNumberInPagination
     ];
 
-    return $pageInfo;
+    return $infoToReturn;
   }
-
 }
