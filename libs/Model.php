@@ -4,7 +4,10 @@ class Model
 {
   function __construct()
   {
-    //Add info about path, to views
+    //Change configuration only, if connection, or one of basic tables not working
+    $this -> configWorking = false;
+
+    //Add info about path
     $this -> path = 'http://' .$_SERVER['HTTP_HOST']. rtrim($_SERVER['PHP_SELF'], '/index.php');
 
     $configFilePath = 'config/config.php';
@@ -12,7 +15,7 @@ class Model
     $userTryChangeConfig = boolval((strstr(ucfirst(rtrim($_GET['url'], "/")), 'Configuration')));
 
     //Try connect do database only if have data about config, and user currently don't changing configuration
-    if((file_exists($configFilePath)) && !($userTryChangeConfig))
+    if((file_exists($configFilePath)))
     {
       try
       {
@@ -30,9 +33,12 @@ class Model
           if($testUserTable && $testPostsTable)
           {
             session_start();
+            $this -> configWorking = true;
           }
-          else
-            $this -> badConfig();
+          else if(!($userTryChangeConfig))
+          {
+              $this -> badConfig();
+          }
 
       }
       catch (exception $e)
@@ -40,8 +46,8 @@ class Model
         $showErrorConnection = false;
         if($showErrorConnection)
           echo '<pre>' . $e;
-        else
-        $this -> badConfig();
+        else if(!($userTryChangeConfig))
+          $this -> badConfig();
       }
 
     }

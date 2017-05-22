@@ -5,6 +5,9 @@ class ConfigModel extends Model
   function __construct()
   {
     parent::__construct();
+
+    if($this -> configWorking && !isSet($_SESSION['logged']))
+      header("Location: " . $this -> path);
   }
 
   public function createNewConfigFile($configParams)
