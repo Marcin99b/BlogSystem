@@ -5,6 +5,7 @@ class Posts extends Controller
   function __construct($params)
   {
     parent::__construct();
+
     require_once 'models/PostModel.php';
     $this -> model = new PostModel();
 

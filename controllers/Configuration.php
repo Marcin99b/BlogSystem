@@ -5,6 +5,7 @@ class Configuration extends Controller
   function __construct($params)
   {
     parent::__construct();
+
     require_once 'models/ConfigModel.php';
     $this -> model = new ConfigModel();
 

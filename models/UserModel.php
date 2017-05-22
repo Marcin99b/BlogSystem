@@ -5,6 +5,7 @@ class UserModel extends Model
   function __construct()
   {
     parent::__construct();
+
   }
 
   public function loginUser($login, $password)
@@ -22,15 +23,23 @@ class UserModel extends Model
       $hash = $resultLogin['password'];
 
       //Check if password in input is the same as in database
-      if( password_verify( $password , $hash ) == true )
+      if(password_verify($password , $hash))
       {
-      //User is logged to account, and session is started
         $_SESSION['logged'] = true;
         $_SESSION['userLogin'] = $login;
         //Add permission
         $_SESSION['permission'] = $resultLogin['permission'];
       }
     }
+    header("Location: " . $this -> path);
+  }
+  public function logoutUser()
+  {
+    unset($_SESSION['logged']);
+    unset($_SESSION['userLogin']);
+    unset($_SESSION['permission']);
+
+    header("Location: " . $this -> path);
   }
 
   public function addUser()

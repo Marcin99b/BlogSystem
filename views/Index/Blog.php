@@ -15,16 +15,33 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index">Strona główna</a></li>
-          <li><a href="Index/AboutMe">O mnie</a></li>
-          <li><a href="Index/Contact">Kontakt</a></li>
-          <li><a href="Posts/List">Zarządzaj postami</a></li>
+          <li class="active"><a href="<?= $this -> path; ?>">Strona główna</a></li>
+          <li><a href="<?= $this -> path; ?>/Index/AboutMe">O mnie</a></li>
+          <li><a href="<?= $this -> path; ?>/Index/Contact">Kontakt</a></li>
+          <?php
+            if(isSet($_SESSION['logged']))
+            {
+              echo '<li><a href="'.$this -> path.'/Posts/List">Zarządzaj postami</a></li>';
+              echo '<li><a href="'.$this -> path.'/Account/logout">Wyloguj się</a></li>';
+            }
+            else
+              echo '<li><a href="'.$this -> path.'/Account/login">Zaloguj się</a></li>';
+          ?>
         </ul>
         <form class="navbar-form navbar-left">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Szukaj">
           </div>
           <button type="submit" class="btn btn-default">Szukaj posta</button>
+        </form>
+        <form class="navbar-form navbar-right">
+          <ul class="nav navbar-nav">
+          <?php
+            if(isSet($_SESSION['logged']))
+              echo '<li><a href="'.$this -> path.'/Account/ManageAccount">Zarządzaj kontem: <big><b>'.
+              ucfirst($_SESSION['userLogin']).'</b></big></a></li>';
+              ?>
+          </ul>
         </form>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

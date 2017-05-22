@@ -28,7 +28,9 @@ class Model
 
           //If both tables is exist, start session, else redirect to "bad config" page, by use bacConfig() method
           if($testUserTable && $testPostsTable)
+          {
             session_start();
+          }
           else
             $this -> badConfig();
 

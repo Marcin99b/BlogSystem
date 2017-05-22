@@ -5,6 +5,7 @@ class PostModel extends Model
   function __construct()
   {
     parent::__construct();
+
   }
 
   public function addPost($title = null, $content = null, $footer = null)

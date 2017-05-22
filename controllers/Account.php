@@ -24,8 +24,23 @@ class Account extends Controller
   }
   private function login()
   {
-    $this -> model -> loginUser('moder', 'moder');
-    echo $_SESSION['userLogin'];
+    if(isSet($_POST['login']) && isSet($_POST['password']))
+    {
+      $login = $_POST['login'];
+      $password = $_POST['password'];
+      $this -> model -> loginUser($login, $password);
+    }
+    else
+      $this -> view -> render();
+  }
+
+  private function logout()
+  {
+    $this -> model -> logoutUser();
+  }
+
+  private function manageAccount()
+  {
     $this -> view -> render();
   }
 }

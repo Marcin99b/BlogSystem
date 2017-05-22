@@ -54,6 +54,7 @@ div.post
 
 nav.navbar
   {
+    height: 50px;
     position: fixed;
     top: 0px;
     width: 100vw;
