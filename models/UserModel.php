@@ -10,8 +10,6 @@ class UserModel extends Model
 
   public function loginUser($login, $password)
   {
-    if (isSet($login) && isSet($password))
-    {
       //Select password (and permission) as login in form
       //Script get permission, because this isn't dangerous, and one query is faster than two
       $loginConnect = $this -> pdo->prepare( 'SELECT password, permission FROM `users` WHERE login = :login' );
@@ -30,7 +28,6 @@ class UserModel extends Model
         //Add permission
         $_SESSION['permission'] = $resultLogin['permission'];
       }
-    }
     header("Location: " . $this -> path);
   }
   public function logoutUser()
@@ -42,9 +39,12 @@ class UserModel extends Model
     header("Location: " . $this -> path);
   }
 
-  public function addUser()
+  public function addUser($login, $password)
   {
-
+      $userToAdd = $this -> pdo->prepare('INSERT INTO `users`(`login`, `password`) VALUES (:login,:password)');
+      $userToAdd->bindParam(':login', $login );
+      $userToAdd->bindParam(':password', password_hash($password, PASSWORD_BCRYPT));
+      $userToAdd->execute();
   }
 
   public function selectUser()
@@ -57,7 +57,7 @@ class UserModel extends Model
 
   }
 
-  public function deleteUser()
+  public function deleteUser($login, $password)
   {
 
   }

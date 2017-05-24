@@ -1,13 +1,14 @@
 <div class="loginmodal-container">
-<h1>Zaloguj się</h1><br>
+<h1>Zarejestruj się</h1><br>
 <form  method="post">
 <input type="text" name="login" placeholder="Login">
 <input type="password" name="password" placeholder="Hasło">
-<input type="submit" class="login loginmodal-submit" value="Zaloguj">
+<input type="password" name="passwordConfirm" placeholder="Powtórz hasło">
+<input type="submit" class="login loginmodal-submit" value="Zarejestruj">
 </form>
 
 <div class="login-help">
-<a href="<?= $this -> path;?>/Account/Registration">Zarejestruj się</a>
+<a href="<?= $this -> path;?>/Account/Login">Zaloguj się</a>
 </div>
 </div>
 
