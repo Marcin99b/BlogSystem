@@ -2,10 +2,7 @@
 
 class ConfigFile
 {
-  function __construct()
-  {
 
-  }
   public function createNewConfigFile($configParams)
   {
     $configDirectory = 'config';
@@ -32,5 +29,10 @@ class ConfigFile
     //Write text to file, and close file
     fwrite($newConfigFile, $textConfigFile);
     fclose($newConfigFile);
+  }
+
+  public function editConfigFile($configParams)
+  {
+
   }
 }
