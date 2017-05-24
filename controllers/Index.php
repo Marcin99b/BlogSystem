@@ -13,20 +13,17 @@ class Index extends Controller
     $this -> view -> page = "Blog";
     if(isSet($params[1])) $this -> view -> page = $params[1];
 
-    $this -> pageMethod = "Page";
-    if(isSet($params[2])) $this -> pageMethod = $params[2];
-
     $this -> pageMethodParam = "1";
-    if(isSet($params[3])) $this -> pageMethodParam = $params[3];
+    if(isSet($params[2])) $this -> pageMethodParam = $params[3];
 
     $this -> blogName = 'MyBlog';
     $this -> view -> blogTitle = $this -> blogName;
 
     $action = $this -> view -> page;
-    $this -> $action($this -> pageMethod, $this -> pageMethodParam);
+    $this -> $action($this -> pageMethodParam);
   }
 
-  private function blog($method, $id)
+  private function blog($id)
   {
     //Get info about pages
     $pagesInfo = $this -> model -> pagination($id);

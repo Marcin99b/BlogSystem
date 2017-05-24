@@ -4,7 +4,6 @@ class Model
 {
   function __construct()
   {
-    //Change configuration only, if connection, or one of basic tables not working
     $this -> configWorking = false;
 
     //Add info about path
@@ -35,7 +34,7 @@ class Model
             session_start();
             $this -> configWorking = true;
           }
-          else if(!($userTryChangeConfig))
+          else if (!($userTryChangeConfig))
           {
               $this -> badConfig();
           }

@@ -14,9 +14,6 @@ class Posts extends Controller
     $this -> view -> page = "List";
     if(isSet($params[1])) $this -> view -> page = $params[1];
 
-    $this -> pageMethod = "Page";
-    if(isSet($params[2])) $this -> pageMethod = $params[2];
-
     $this -> pageMethodParam = "1";
     if(isSet($params[3])) $this -> pageMethodParam = $params[3];
 
@@ -24,10 +21,10 @@ class Posts extends Controller
     $this -> view -> blogTitle = $this -> blogName;
 
     $action = $this -> view -> page;
-    $this -> $action($this -> pageMethod, $this -> pageMethodParam);
+    $this -> $action($this -> pageMethodParam);
   }
 
-  private function add($method, $id)
+  private function add($id)
   {
     //use this method only if user write 'title' of post
     if(isSet($_POST['title']))
@@ -43,7 +40,7 @@ class Posts extends Controller
     $this -> view -> render();
   }
 
-  private function list($method, $id)
+  private function list($id)
   {
     //Get info about pages
     $pagesInfo = $this -> model -> pagination($id);
@@ -60,7 +57,7 @@ class Posts extends Controller
     $this -> view -> render();
   }
 
-  private function edit($method, $id)
+  private function edit($id)
   {
     //use this method only if user write 'id' of post
     if(isSet($_POST['postId']))
@@ -77,7 +74,7 @@ class Posts extends Controller
     $this -> view -> pageTitle = $this -> blogName . " - Edit posts";
     $this -> view -> render();
   }
-  private function delete($method, $id)
+  private function delete($id)
   {
     //Get info about pages
     $pagesInfo = $this -> model -> pagination($id);
