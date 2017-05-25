@@ -25,12 +25,8 @@ class Model
           $login, $password,
           array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
-          //Tables validation (Return true if table is exist)
-          $testUserTable = ( $this -> pdo -> query('SHOW TABLES LIKE "users"')->fetch() != false);
-          $testPostsTable = ( $this -> pdo -> query('SHOW TABLES LIKE "posts"')->fetch() != false );
-
           //If both tables is exist, start session, else redirect to "bad config" page, by use bacConfig() method
-          if($testUserTable && $testPostsTable)
+          if($this -> tablesExist())
           {
             session_start();
             $this -> configWorking = true;
@@ -62,6 +58,25 @@ class Model
     require_once 'views/BadConfig.php';
     require_once 'views/Footer.php';
     exit ();
+  }
+
+  private function tablesExist()
+  {
+    //Tables validation (Return true if table is exist)
+    $testUserTable = ( $this -> pdo -> query('SHOW TABLES LIKE "users"')->fetch() != false);
+    $testPostsTable = ( $this -> pdo -> query('SHOW TABLES LIKE "posts"')->fetch() != false);
+
+    if($testUserTable && $testPostsTable)
+    {
+      $oneAdminAccountIsExist = ($this -> pdo -> query('SELECT id from `users` WHERE permission = 1')->fetch() != null);
+
+      if($oneAdminAccountIsExist)
+        return true;
+      else
+        return false;
+    }
+    else
+      return false;
   }
 
 }

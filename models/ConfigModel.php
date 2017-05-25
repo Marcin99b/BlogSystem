@@ -40,8 +40,6 @@ class ConfigModel extends Model
 
   public function createTablesInDatabase()
   {
-    $createDatabaseIfNotExist = $this -> pdo -> query('CREATE DATABASE IF NOT EXISTS '. $this -> dbname .'');
-
 
     $createTables = $this -> pdo -> query('
       CREATE TABLE '. $this -> dbname .'.`posts` (
