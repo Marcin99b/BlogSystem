@@ -100,7 +100,7 @@ class PostModel extends Model
       $numberPostsToShow = $countPostInDatabase - $fromNumberPostInDatabase;
 
     $highestNumberInPagination = round($countPostInDatabase/10);
-    if($highestNumberInPagination < $countPostInDatabase)
+    if($highestNumberInPagination * 10 < $countPostInDatabase)
       $highestNumberInPagination++;
 
     //Prepare info about pages, to return
