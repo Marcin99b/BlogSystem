@@ -19,8 +19,9 @@ class Model
       try
       {
         require_once $configFilePath;
+        $this -> dbname = $dbname;
 
-        $this -> pdo = new PDO( 'mysql:host='. $hostname .';dbname=' . $dbname . ';encoding='. $encoding .';',
+        $this -> pdo = new PDO( 'mysql:host='. $hostname .';dbname=' . $this -> dbname . ';encoding='. $encoding .';',
           $login, $password,
           array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 

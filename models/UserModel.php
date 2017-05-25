@@ -41,9 +41,11 @@ class UserModel extends Model
 
   public function addUser($login, $password)
   {
-      $userToAdd = $this -> pdo->prepare('INSERT INTO `users`(`login`, `password`) VALUES (:login,:password)');
-      $userToAdd->bindParam(':login', $login );
-      $userToAdd->bindParam(':password', password_hash($password, PASSWORD_BCRYPT));
+    $hashPassword = password_hash($password, PASSWORD_BCRYPT);
+
+    $userToAdd = $this -> pdo->prepare('INSERT INTO `users`(`login`, `password`) VALUES (:login,:password)');
+      $userToAdd->bindParam(':login', $login);
+      $userToAdd->bindParam(':password', $hashPassword);
       $userToAdd->execute();
   }
 

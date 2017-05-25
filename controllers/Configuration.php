@@ -35,4 +35,13 @@ class Configuration extends Controller
 
     $this -> view -> render();
   }
+
+  private function addTables()
+  {
+    $this -> model -> createTablesInDatabase();
+  }
+  private function testData()
+  {
+    $this -> model -> createTestData();
+  }
 }

@@ -25,6 +25,12 @@
     <p class="list-group-item-text">Kolumny 'id', 'date', 'autorID', 'permission' są liczbowe (INT)</p>
     <p class="list-group-item-text">Kolumny 'title', 'content', 'keySentence', 'login', 'password' są tekstowe (text lub varchar)</p>
     <p class="list-group-item-text">Pamiętaj o nadaniu metody porównywania napisów 'utf-8_polish_ci'</p>
+    <a class="btn btn-default" href='<?= $this -> path ?>/configuration/addTables' role="button">
+      Stwórz automatycznie prawidłowe tabele w bazie danych. (Zadziała jedynie jeśli utworzyłeś wcześniej plik konfiguracyjny)
+    </a>
+    <a class="btn btn-default" href='<?= $this -> path ?>/configuration/testData' role="button">
+      Stwórz dane testowe w bazie danych, oraz <strong>użytkownika "admin" z hasłem "admin" Wymagane do prawidłowego działania</strong>. (Zadziała jedynie jeśli utworzyłeś wcześniej plik konfiguracyjny)
+    </a>
   </div>
 </div>
 
