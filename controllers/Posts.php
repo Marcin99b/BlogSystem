@@ -33,7 +33,7 @@ class Posts extends Controller
     $this -> model -> addPost($title, $content, $footer);
     }
 
-    $this -> view -> pageTitle = $this -> blogName . " - Add posts";
+    $this -> view -> pageTitle = $this -> blogName . " - Dodaj post";
     $this -> view -> render();
   }
 
@@ -50,7 +50,7 @@ class Posts extends Controller
     $this -> view -> maxPage = $pagesInfo['max'];
 
     $this -> view -> posts = $show;
-    $this -> view -> pageTitle = $this -> blogName . " - List posts";
+    $this -> view -> pageTitle = $this -> blogName . " - Lista postów";
     $this -> view -> render();
   }
 
@@ -68,7 +68,7 @@ class Posts extends Controller
     }
 
 
-    $this -> view -> pageTitle = $this -> blogName . " - Edit posts";
+    $this -> view -> pageTitle = $this -> blogName . " - Edytuj post";
     $this -> view -> render();
   }
   private function delete($id)
@@ -92,7 +92,7 @@ class Posts extends Controller
     header("Refresh:0");
     }
     $this -> view -> posts = $show;
-    $this -> view -> pageTitle = $this -> blogName . " - Delete posts";
+    $this -> view -> pageTitle = $this -> blogName . " - Usuń post";
     $this -> view -> render();
   }
 
