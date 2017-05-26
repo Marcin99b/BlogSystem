@@ -16,9 +16,6 @@ class Index extends Controller
     $this -> pageMethodParam = "1";
     if(isSet($params[2])) $this -> pageMethodParam = $params[3];
 
-    $this -> blogName = 'MyBlog';
-    $this -> view -> blogTitle = $this -> blogName;
-
     $action = $this -> view -> page;
     $this -> $action($this -> pageMethodParam);
   }

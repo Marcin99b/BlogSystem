@@ -9,9 +9,14 @@
   <ul class="nav navbar-nav">
   <?php
     if(isSet($_SESSION['logged']))
+    {
       echo '<li><a href="'.$this -> path.'/Account/ManageAccount">Zarządzaj kontem: <big><b>'.
       ucfirst($_SESSION['userLogin']).'</b></big></a></li>';
-      ?>
+      echo '<li><a href="'.$this -> path.'/Account/logout">Wyloguj się</a></li>';
+    }
+    else
+      echo '<li><a href="'.$this -> path.'/Account/login">Zaloguj się</a></li>';
+    ?>
   </ul>
 </form>
 </div><!-- /.navbar-collapse -->

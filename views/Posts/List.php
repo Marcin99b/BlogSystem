@@ -1,9 +1,9 @@
 <?php require_once 'views/MenuElements/StartTemplate.php' ?>
           <li class="active"><a href="Posts">Lista postów</a></li>
-          <li><a href="Posts/Add">Dodaj post</a></li>
-          <li><a href="Posts/Edit">Edytuj post</a></li>
-          <li><a href="Posts/Delete">Usuń post</a></li>
-          <li><a href="Index/Blog">Przejdź do bloga</a></li>
+          <li><a href="<?= $this -> path; ?>/Posts/Add">Dodaj post</a></li>
+          <li><a href="<?= $this -> path; ?>/Posts/Edit">Edytuj post</a></li>
+          <li><a href="<?= $this -> path; ?>/Posts/Delete">Usuń post</a></li>
+          <li><a href="<?= $this -> path; ?>/Index/Blog">Przejdź do bloga</a></li>
 <?php require_once 'views/MenuElements/EndTemplate.php' ?>
 
 <style>

@@ -18,6 +18,13 @@ class Account extends Controller
     if(!isSet($_SESSION['userLogin']) && $this -> view -> page != 'Registration')
       $this -> view -> page = "Login";
 
+    if(isSet($_SESSION['logged']))
+    {
+      $this -> view -> adminAccount = ($_SESSION['permission'] == 1);
+      $this -> view -> moderAccount = ($_SESSION['permission'] <= 2);
+      $this -> view -> writerAccount = ($_SESSION['permission'] <= 3);
+    }
+
     $action = $this -> view -> page;
     $this -> $action();
   }
@@ -57,6 +64,7 @@ class Account extends Controller
 
   private function manageAccount()
   {
+    $this -> view -> pageTitle = ucfirst($_SESSION['userLogin']) . ' - Zarządzaj kontem';
     $this -> view -> render();
   }
 }

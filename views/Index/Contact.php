@@ -6,10 +6,7 @@
             if(isSet($_SESSION['logged']))
             {
               echo '<li><a href="'.$this -> path.'/Posts/List">Zarządzaj postami</a></li>';
-              echo '<li><a href="'.$this -> path.'/Account/logout">Wyloguj się</a></li>';
             }
-            else
-              echo '<li><a href="'.$this -> path.'/Account/login">Zaloguj się</a></li>';
           ?>
         </ul>
 <?php require_once 'views/MenuElements/EndTemplate.php' ?>

@@ -20,37 +20,37 @@ $encoding = 'utf-8'; // - system kodowania, domyślnie utf-8
   <div class="form-group">
     <label class="control-label col-xs-2">Nazwa hosta</label>
     <div class="col-xs-5">
-      <input type="text" class="form-control" id="inputEmail" placeholder="Localhost" name="hostname">
+      <input type="text" class="form-control" placeholder="Localhost" name="hostname">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-xs-2">Nazwa bazy danych</label>
     <div class="col-xs-5">
-      <input type="text" class="form-control" id="inputPassword" placeholder="MyDatabase" name="dbname">
+      <input type="text" class="form-control" placeholder="MyDatabase" name="dbname">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-xs-2">Login</label>
     <div class="col-xs-5">
-      <input type="text" class="form-control" id="inputPassword" placeholder="Root" name="login">
+      <input type="text" class="form-control" placeholder="Root" name="login">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-xs-2">Hasło</label>
     <div class="col-xs-5">
-      <input type="password" class="form-control" id="inputPassword" name="password">
+      <input type="password" class="form-control" name="password">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-xs-2">Kodowanie</label>
     <div class="col-xs-5">
-      <input type="text" class="form-control" id="inputPassword" value="utf-8" name="encoding">
+      <input type="text" class="form-control" value="utf-8" name="encoding">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-xs-2"></label>
     <div class="col-xs-5">
-      <input type="submit" class="form-control btn-success" id="inputPassword" value="Stwórz/zaktualizuj plik konfiguracyjny">
+      <input type="submit" class="form-control btn-success" value="Stwórz/zaktualizuj plik konfiguracyjny">
     </div>
   </div>
 </form>
