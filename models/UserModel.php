@@ -49,9 +49,10 @@ class UserModel extends Model
       $userToAdd->execute();
   }
 
-  public function selectUser()
+  public function selectUser($query)
   {
-
+    $userToSelect = $this -> pdo ->query($query);
+    return $userToSelect;
   }
 
   public function editUser()

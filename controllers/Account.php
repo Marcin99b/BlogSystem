@@ -67,4 +67,12 @@ class Account extends Controller
     $this -> view -> pageTitle = ucfirst($_SESSION['userLogin']) . ' - Zarządzaj kontem';
     $this -> view -> render();
   }
+
+  private function changePermission()
+  {
+    $show = $this -> model -> selectUser('SELECT id, login, permission FROM `users` ORDER BY permission');
+    $this -> view -> users = $show;
+    $this -> view -> render();
+  }
+
 }

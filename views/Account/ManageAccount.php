@@ -1,10 +1,10 @@
 <?php require_once 'views/MenuElements/StartTemplate.php' ?>
-          <li class="active"><a href="<?= $this -> path; ?>">Zarządzaj kontem</a></li>
+          <li class="active"><a href="<?= $this -> path; ?>/Account">Zarządzaj kontem</a></li>
           <li class="disabled"><a href="<?= $this -> path; ?>/Account/ManageAccount">Zmień hasło</a></li>
           <li class="disabled"><a href="<?= $this -> path; ?>/Account/ManageAccount">Usuń konto</a></li>
           <?php
             if($this -> adminAccount)
-              echo '<li class="disabled"><a href="'. $this -> path .'/Account/ManageAccount">Zarządzaj kontami</a></li>';
+              echo '<li><a href="'. $this -> path .'/Account/ChangePermission">Zarządzaj kontami</a></li>';
           ?>
           <li><a href="<?= $this -> path; ?>/Index">Przejdź do bloga</a></li>
 <?php require_once 'views/MenuElements/EndTemplate.php' ?>
