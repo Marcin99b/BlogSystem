@@ -1,3 +1,3 @@
-<footer style="clear: both; margin: 5px; text-align: center;">Copyright &copy; Marcin Bigos 2017. Wszelkie prawa zastrzeżone.</footer>
+<footer style="position: fixed; left: 10px; bottom: 10px;">Copyright &copy; Marcin Bigos 2017. Wszelkie prawa zastrzeżone.</footer>
 </body>
 </html>
