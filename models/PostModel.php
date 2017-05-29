@@ -32,19 +32,25 @@ class PostModel extends Model
       }
 
     // Add to database
-    $postToAdd = $this -> pdo-> prepare('INSERT INTO `posts`(`title`, `date`, `content`, `footer`) VALUES (:title, :datetime, :content, :footer)');
-      $postToAdd->bindParam(':title', $title );
-      $postToAdd->bindParam(':datetime', $dateToAdd );
-      $postToAdd->bindParam(':content', $content );
-      $postToAdd->bindParam(':footer', $footer );
+    $postToAdd = $this -> pdo-> prepare('INSERT INTO `posts`(`title`, `date`, `content`, `footer`, `autorId`) VALUES (:title, :datetime, :content, :footer, :autorId)');
+      $postToAdd->bindParam(':title', $title);
+      $postToAdd->bindParam(':datetime', $dateToAdd);
+      $postToAdd->bindParam(':content', $content);
+      $postToAdd->bindParam(':footer', $footer);
+      $postToAdd->bindParam(':autorId', $_SESSION['userId']);
       $postToAdd->execute();
 
     }
   }
   //Select post (write query in controller)
-  public function selectPost($query)
+  public function selectPost($fromPage, $numberPage)
   {
-    $postToSelect = $this -> pdo ->query($query);
+    $postToSelect = $this -> pdo ->query('SELECT
+      p.id, p.title, p.date, p.content, p.footer, p.keySentence, p.autorId, u.id, u.login AS autorId
+      from posts AS p, users AS u
+      WHERE p.autorId = u.id
+      ORDER BY p.id DESC
+      LIMIT '. $fromPage .', '. $numberPage .'  ');
     return $postToSelect;
   }
 

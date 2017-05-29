@@ -54,6 +54,7 @@ $(function () {
   </tr>
 
   <?php
+
     foreach ($this -> posts as $value)
     {
       echo '
@@ -65,7 +66,6 @@ $(function () {
       <td>'. $value['autorId'] .'</td>
       </tr>';
     }
-
   ?>
 
 </table>

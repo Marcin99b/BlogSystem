@@ -45,7 +45,8 @@ class Posts extends Controller
     $fromPage = $pagesInfo['from'];
     $numberPage = $pagesInfo['number'];
 
-    $show = $this -> model -> selectPost('SELECT * from `posts` ORDER BY id DESC LIMIT '. $fromPage .', '. $numberPage .'  ');
+    $show = $this -> model -> selectPost($fromPage, $numberPage);
+
     $this -> view -> pageId = $id;
     $this -> view -> maxPage = $pagesInfo['max'];
 

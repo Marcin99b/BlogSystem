@@ -12,7 +12,7 @@ class UserModel extends Model
   {
       //Select password (and permission) as login in form
       //Script get permission, because this isn't dangerous, and one query is faster than two
-      $loginConnect = $this -> pdo->prepare( 'SELECT password, permission FROM `users` WHERE login = :login' );
+      $loginConnect = $this -> pdo->prepare( 'SELECT id, password, permission FROM `users` WHERE login = :login' );
         $loginConnect->bindParam(':login', $login);
         $loginConnect->execute();
 
@@ -25,7 +25,7 @@ class UserModel extends Model
       {
         $_SESSION['logged'] = true;
         $_SESSION['userLogin'] = $login;
-        //Add permission
+        $_SESSION['userId'] = $resultLogin['id'];
         $_SESSION['permission'] = $resultLogin['permission'];
       }
     header("Location: " . $this -> path);
@@ -35,6 +35,7 @@ class UserModel extends Model
     unset($_SESSION['logged']);
     unset($_SESSION['userLogin']);
     unset($_SESSION['permission']);
+    unset($_SESSION['userId']);
 
     header("Location: " . $this -> path);
   }

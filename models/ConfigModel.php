@@ -52,13 +52,19 @@ class ConfigModel extends Model
       `autorId` INT NOT NULL ,
       PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-
-
       CREATE TABLE '. $this -> dbname .'.`users` (
-      `id` INT NOT NULL AUTO_INCREMENT , `login` VARCHAR(100) NOT NULL ,
+      `id` INT NOT NULL AUTO_INCREMENT ,
+      `login` VARCHAR(100) NOT NULL ,
       `password` VARCHAR(255) NOT NULL ,
       `permission` INT NOT NULL DEFAULT "4" ,
-      PRIMARY KEY (`id`)) ENGINE = InnoDB;');
+      PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+      CREATE TABLE '. $this -> dbname .'.`groups` (
+      `id` INT NOT NULL AUTO_INCREMENT ,
+      `name` VARCHAR(100) NOT NULL ,
+      `userId` INT NOT NULL ,
+      PRIMARY KEY (`id`)) ENGINE = InnoDB;
+      ');
 
     header('location: '. $this -> path);
   }
