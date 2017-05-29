@@ -3,7 +3,7 @@
           <li><a href="<?= $this -> path; ?>/Index/AboutMe">O mnie</a></li>
           <li class="active"><a href="<?= $this -> path; ?>/Index/Contact">Kontakt</a></li>
           <?php
-            if(isSet($_SESSION['logged']))
+            if(isset($_SESSION['logged']))
             {
               echo '<li><a href="'.$this -> path.'/Posts/List">Zarządzaj postami</a></li>';
             }

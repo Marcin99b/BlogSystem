@@ -12,10 +12,10 @@ class Posts extends Controller
     $this -> view -> controller = "Posts";
     //Get params from url. If params == null, use default value
     $this -> view -> page = "List";
-    if(isSet($params[1])) $this -> view -> page = $params[1];
+    if(isset($params[1])) $this -> view -> page = $params[1];
 
     $this -> pageMethodParam = "1";
-    if(isSet($params[3])) $this -> pageMethodParam = $params[3];
+    if(isset($params[3])) $this -> pageMethodParam = $params[3];
 
     $action = $this -> view -> page;
     $this -> $action($this -> pageMethodParam);
@@ -24,7 +24,7 @@ class Posts extends Controller
   private function add($id)
   {
     //use this method only if user write 'title' of post
-    if(isSet($_POST['title']))
+    if(isset($_POST['title']))
     {
     $title = $_POST['title'];
     $content = $_POST['content'];
@@ -57,7 +57,7 @@ class Posts extends Controller
   private function edit($id)
   {
     //use this method only if user write 'id' of post
-    if(isSet($_POST['postId']))
+    if(isset($_POST['postId']))
     {
     $id = $_POST['postId'];
     $title = $_POST['title'];
@@ -84,7 +84,7 @@ class Posts extends Controller
     $this -> view -> maxPage = $pagesInfo['max'];
 
     //use this method only if user write 'id' of post
-    if(isSet($_POST['deleteId']))
+    if(isset($_POST['deleteId']))
     {
     $id = $_POST['deleteId'];
 

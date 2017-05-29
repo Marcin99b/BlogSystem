@@ -12,13 +12,13 @@ class Account extends Controller
     //Get params from url. If params == null, use default value
 
     $this -> view -> page = "ManageAccount";
-    if(isSet($params[1])) $this -> view -> page = $params[1];
+    if(isset($params[1])) $this -> view -> page = $params[1];
 
     //Always if user isn't logged, page = login
-    if(!isSet($_SESSION['userLogin']) && $this -> view -> page != 'Registration')
+    if(!isset($_SESSION['userLogin']) && $this -> view -> page != 'Registration')
       $this -> view -> page = "Login";
 
-    if(isSet($_SESSION['logged']))
+    if(isset($_SESSION['logged']))
     {
       $this -> view -> adminAccount = ($_SESSION['permission'] == 1);
       $this -> view -> moderAccount = ($_SESSION['permission'] <= 2);
@@ -30,7 +30,7 @@ class Account extends Controller
   }
   private function login()
   {
-    if(isSet($_POST['login']) && isSet($_POST['password']))
+    if(isset($_POST['login']) && isset($_POST['password']))
     {
       $login = $_POST['login'];
       $password = $_POST['password'];
@@ -47,7 +47,7 @@ class Account extends Controller
 
   private function registration()
   {
-    if(isSet($_POST['login']) && isSet($_POST['password']) && isSet($_POST['passwordConfirm']))
+    if(isset($_POST['login']) && isset($_POST['password']) && isset($_POST['passwordConfirm']))
     {
       if($_POST['password'] == $_POST['passwordConfirm'])
       {

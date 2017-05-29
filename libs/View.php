@@ -11,7 +11,7 @@ class View
   {
     require_once 'views/Header.php';
 
-    if(isSet($this -> controller) && isSet($this -> page))
+    if(isset($this -> controller) && isset($this -> page))
     {
     $plik = 'views/' . $this -> controller . '/' . $this -> page . '.php';
     }

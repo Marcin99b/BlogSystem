@@ -13,14 +13,14 @@ class Configuration extends Controller
     //Get params from url. If params == null, use default value
     $this -> view -> page = "Create";
 
-    if(isSet($params[1])) $this -> view -> page = $params[1];
+    if(isset($params[1])) $this -> view -> page = $params[1];
     $action = $this -> view -> page;
     $this -> $action();
   }
   private function create()
   {
     //Use this method only if user write 'hostname'
-    if(isSet($_POST['hostname']))
+    if(isset($_POST['hostname']))
     {
       $configParams = [
         'hostname' => $_POST['hostname'],

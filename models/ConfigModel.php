@@ -6,7 +6,7 @@ class ConfigModel extends Model
   {
     parent::__construct();
 
-    if($this -> configWorking && !isSet($_SESSION['logged']))
+    if($this -> configWorking && !isset($_SESSION['logged']))
       header("Location: " . $this -> path);
   }
 

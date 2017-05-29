@@ -11,7 +11,7 @@ class Index extends Controller
     $this -> view -> controller = "Index";
     //Get params from url. If params == null, use default value
     $this -> view -> page = "Blog";
-    if(isSet($params[1])) $this -> view -> page = $params[1];
+    if(isset($params[1])) $this -> view -> page = $params[1];
 
     $this -> pageMethodParam = "1";
     if(isSet($params[2])) $this -> pageMethodParam = $params[3];

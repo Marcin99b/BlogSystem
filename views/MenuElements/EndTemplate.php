@@ -8,7 +8,7 @@
 <form class="navbar-form navbar-right">
   <ul class="nav navbar-nav">
   <?php
-    if(isSet($_SESSION['logged']))
+    if(isset($_SESSION['logged']))
     {
       echo '<li><a href="'.$this -> path.'/Account/ManageAccount">Zarządzaj kontem: <big><b>'.
       ucfirst($_SESSION['userLogin']).'</b></big></a></li>';
