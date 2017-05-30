@@ -45,12 +45,11 @@ class PostModel extends Model
   //Select post (write query in controller)
   public function selectPost($fromPage, $numberPage)
   {
-    $postToSelect = $this -> pdo ->query('SELECT
-      p.id, p.title, p.date, p.content, p.footer, p.keySentence, p.autorId, u.id, u.login AS autorId
-      from posts AS p, users AS u
-      WHERE p.autorId = u.id
-      ORDER BY p.id DESC
-      LIMIT '. $fromPage .', '. $numberPage .'  ');
+    $postToSelect = $this -> pdo ->query('SELECT *
+      from posts INNER JOIN users ON posts.autorId = users.id
+      ORDER BY posts.id DESC
+      LIMIT '. $fromPage .', '. $numberPage .'');
+
     return $postToSelect;
   }
 
