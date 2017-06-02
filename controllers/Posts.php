@@ -74,15 +74,16 @@ class Posts extends Controller
   }
   private function delete($id)
   {
-    //Get info about pages
-    $pagesInfo = $this -> model -> pagination($id);
-    //Use info about pages, and get correct posts from database
-    $fromPage = $pagesInfo['from'];
-    $numberPage = $pagesInfo['number'];
+	  //Get info about pages
+      $pagesInfo = $this -> model -> pagination($id);
+      //Use info about pages, and get correct posts from database
+      $fromPage = $pagesInfo['from'];
+      $numberPage = $pagesInfo['number'];
 
-    $show = $this -> model -> selectPost('SELECT * from `posts` ORDER BY id DESC LIMIT '. $fromPage .', '. $numberPage .'  ');
-    $this -> view -> pageId = $id;
-    $this -> view -> maxPage = $pagesInfo['max'];
+      $show = $this -> model -> selectPost($fromPage, $numberPage);
+	  
+	  $this -> view -> pageId = $id;
+      $this -> view -> maxPage = $pagesInfo['max'];
 
     //use this method only if user write 'id' of post
     if(isset($_POST['deleteId']))

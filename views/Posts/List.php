@@ -63,7 +63,7 @@ $(function () {
       <td>'. $value['title'] .'</td>
       <td>'. $value['date'] .'</td>
       <td>'. $value['keySentence'] .'</td>
-      <td>'. $value['autorId'] .'</td>
+      <td>'. $value['authorName'] .'</td>
       </tr>';
     }
   ?>

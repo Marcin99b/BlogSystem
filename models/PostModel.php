@@ -32,7 +32,7 @@ class PostModel extends Model
       }
 
     // Add to database
-    $postToAdd = $this -> pdo-> prepare('INSERT INTO `posts`(`title`, `date`, `content`, `footer`, `autorId`) VALUES (:title, :datetime, :content, :footer, :autorId)');
+    $postToAdd = $this -> pdo-> prepare('INSERT INTO `posts`(`title`, `date`, `content`, `footer`, `authorId`) VALUES (:title, :datetime, :content, :footer, :autorId)');
       $postToAdd->bindParam(':title', $title);
       $postToAdd->bindParam(':datetime', $dateToAdd);
       $postToAdd->bindParam(':content', $content);
@@ -45,10 +45,21 @@ class PostModel extends Model
   //Select post (write query in controller)
   public function selectPost($fromPage, $numberPage)
   {
-    $postToSelect = $this -> pdo ->query('SELECT *
-      from posts INNER JOIN users ON posts.autorId = users.id
-      ORDER BY posts.id DESC
-      LIMIT '. $fromPage .', '. $numberPage .'');
+    $postToSelect = $this -> pdo ->query('SELECT
+			posts.id AS id,
+			posts.title,
+			posts.date,
+			posts.content,
+			posts.footer,
+			posts.keySentence,
+			posts.authorId,
+			users.id,
+			users.login AS authorName
+		from
+			posts
+		INNER JOIN users ON posts.authorId = users.id
+		ORDER BY posts.id DESC
+		LIMIT '. $fromPage .', '. $numberPage .'');
 
     return $postToSelect;
   }
