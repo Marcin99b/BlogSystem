@@ -21,33 +21,32 @@ class Posts extends Controller
     $this -> $action($this -> pageMethodParam);
   }
 
-  private function add($id)
+  private function add()
   {
     //use this method only if user write 'title' of post
     if(isset($_POST['title']))
     {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $footer = $_POST['footer'];
+	    $title = $_POST['title'];
+	    $content = $_POST['content'];
+	    $footer = $_POST['footer'];
 
-    $this -> model -> addPost($title, $content, $footer);
+	    $this -> model -> addPost($title, $content, $footer);
     }
-
     $this -> view -> pageTitle = $this -> blogName . " - Dodaj post";
     $this -> view -> render();
   }
 
-  private function list($id)
+  private function list($thisPageId)
   {
     //Get info about pages
-    $pagesInfo = $this -> model -> pagination($id);
+    $pagesInfo = $this -> model -> pagination($thisPageId);
     //Use info about pages, and get correct posts from database
     $fromPage = $pagesInfo['from'];
     $numberPage = $pagesInfo['number'];
 
     $show = $this -> model -> selectPost($fromPage, $numberPage);
 
-    $this -> view -> pageId = $id;
+    $this -> view -> pageId = $thisPageId;
     $this -> view -> maxPage = $pagesInfo['max'];
 
     $this -> view -> posts = $show;
@@ -55,44 +54,40 @@ class Posts extends Controller
     $this -> view -> render();
   }
 
-  private function edit($id)
+  private function edit($postId)
   {
     //use this method only if user write 'id' of post
     if(isset($_POST['postId']))
     {
-    $id = $_POST['postId'];
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $footer = $_POST['footer'];
+	    $id = $_POST['postId'];
+	    $title = $_POST['title'];
+	    $content = $_POST['content'];
+	    $footer = $_POST['footer'];
 
-    $this -> model -> updatePost($id, $title, $content, $footer);
+	    $this -> model -> updatePost($id, $title, $content, $footer);
     }
-
-
     $this -> view -> pageTitle = $this -> blogName . " - Edytuj post";
     $this -> view -> render();
   }
-  private function delete($id)
+
+  private function delete($thisPageId)
   {
-	  //Get info about pages
-      $pagesInfo = $this -> model -> pagination($id);
-      //Use info about pages, and get correct posts from database
-      $fromPage = $pagesInfo['from'];
-      $numberPage = $pagesInfo['number'];
+	if(isset($_POST['deleteId']))
+	{
+		$postToDeleteId = $_POST['deleteId'];
+		$this -> model -> deletePost($postToDeleteId);
+	}
+	//Get info about pages
+	$pagesInfo = $this -> model -> pagination($thisPageId);
+	//Use info about pages, and get correct posts from database
+	$fromPage = $pagesInfo['from'];
+	$numberPage = $pagesInfo['number'];
 
-      $show = $this -> model -> selectPost($fromPage, $numberPage);
-	  
-	  $this -> view -> pageId = $id;
-      $this -> view -> maxPage = $pagesInfo['max'];
+	$show = $this -> model -> selectPost($fromPage, $numberPage);
 
-    //use this method only if user write 'id' of post
-    if(isset($_POST['deleteId']))
-    {
-    $id = $_POST['deleteId'];
+	$this -> view -> pageId = $thisPageId;
+	$this -> view -> maxPage = $pagesInfo['max'];
 
-    $this -> model -> deletePost($id);
-    header("Refresh:0");
-    }
     $this -> view -> posts = $show;
     $this -> view -> pageTitle = $this -> blogName . " - Usuń post";
     $this -> view -> render();

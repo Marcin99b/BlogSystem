@@ -46,24 +46,22 @@ class PostModel extends Model
   public function selectPost($fromPage, $numberPage)
   {
     $postToSelect = $this -> pdo ->query('SELECT
-			posts.id AS id,
+			posts.id,
 			posts.title,
 			posts.date,
 			posts.content,
 			posts.footer,
 			posts.keySentence,
 			posts.authorId,
-			users.id,
+			users.id AS userId,
 			users.login AS authorName
-		from
-			posts
+		from posts
 		INNER JOIN users ON posts.authorId = users.id
 		ORDER BY posts.id DESC
 		LIMIT '. $fromPage .', '. $numberPage .'');
 
     return $postToSelect;
   }
-
 
   public function updatePost($id = null, $title = null, $content = null, $footer = null)
   {
@@ -79,44 +77,45 @@ class PostModel extends Model
           $content .= $line . '<br>';
         }
       // Add to database
-      $postToUpdate = $this -> pdo -> prepare( ' UPDATE `posts` SET `title` = :title,`content` = :content,`footer` = :footer WHERE id = :postid ' );
-        $postToUpdate->bindParam( ':postid', $id );
-        $postToUpdate->bindParam( ':title', $title );
-        $postToUpdate->bindParam( ':content', $content );
-        $postToUpdate->bindParam( ':footer', $footer );
+      $postToUpdate = $this -> pdo -> prepare( 'UPDATE `posts`
+		  SET
+			  `title` = :title,
+			  `content` = :content,
+			  `footer` = :footer
+		  WHERE id = :postid');
+        $postToUpdate->bindParam(':postid', $id);
+        $postToUpdate->bindParam(':title', $title);
+        $postToUpdate->bindParam(':content', $content);
+        $postToUpdate->bindParam(':footer', $footer);
         $postToUpdate->execute();
     }
   }
 
-  public function deletePost($id = null)
+  public function deletePost($id)
   {
-    if($id != null)
-    {
     //Delete from database
-    $postToDelete = $this -> pdo -> prepare(' DELETE FROM `posts` WHERE id = :postid ');
-        $postToDelete->bindParam( ':postid', $id);
+    $postToDelete = $this -> pdo -> prepare('DELETE FROM `posts` WHERE id = :postid ');
+        $postToDelete->bindParam(':postid', $id);
         $postToDelete->execute();
-    }
   }
 
   public function pagination($idCurrentPage = 1)
   {
-    /*$idCurrentPage==1 return posts 0-10;
-      $idCurrentPage==2 return posts 10-20; etc.*/
-    $fromNumberPostInDatabase = ($idCurrentPage -1) * 10;
+	  //Default numbers posts in one page
+      $numberPostsToShow = 10;
+
+  	//
+    $fromNumberPostInDatabase = ($idCurrentPage -1) * $numberPostsToShow;
 
     //Calc number of pages
     $countPostInDatabase = $this -> pdo ->query('SELECT COUNT(id) AS countPost FROM `posts`')->fetch()['countPost'];
-
-    //Default numbers posts in one page
-    $numberPostsToShow = 10;
 
     //If show last page, and can't show default number of posts, show all others
     if(($fromNumberPostInDatabase + $numberPostsToShow) > $countPostInDatabase)
       $numberPostsToShow = $countPostInDatabase - $fromNumberPostInDatabase;
 
-    $highestNumberInPagination = round($countPostInDatabase/10);
-    if($highestNumberInPagination * 10 < $countPostInDatabase)
+    $highestNumberInPagination = round($countPostInDatabase/$numberPostsToShow);
+    if($highestNumberInPagination * $numberPostsToShow < $countPostInDatabase)
       $highestNumberInPagination++;
 
     //Prepare info about pages, to return
@@ -126,7 +125,6 @@ class PostModel extends Model
       'number' => $numberPostsToShow,
       'max' => $highestNumberInPagination
     ];
-
     return $infoToReturn;
   }
 }
