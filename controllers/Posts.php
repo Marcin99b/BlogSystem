@@ -54,7 +54,7 @@ class Posts extends Controller
     $this -> view -> render();
   }
 
-  private function edit($postId)
+  private function edit($showDataOfPostId)
   {
     //use this method only if user write 'id' of post
     if(isset($_POST['postId']))
