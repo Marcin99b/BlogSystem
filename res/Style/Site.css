@@ -1,8 +1,9 @@
 ﻿/* My stylesheet */
 body
 {
-    background-color: #e6e6e6;
     background-color: #f8f8f8;
+	background-color: #202020;
+	color: #f8f8f8;
 }
 
 div#post-area
@@ -11,12 +12,13 @@ div#post-area
 }
 div.post
   {
+  	color: #202020;
     font-family: Verdana;
     margin: 15px;
     margin-top: 80px;
     margin-bottom: 30px;
     background-color: #f8f8f8;
-    border: solid 3px #e6e6e6;
+    border: solid 3px #4286f4;
   }
   div.post-title
   {
@@ -29,7 +31,7 @@ div.post
 
   div.post-date
   {
-    background-color: #303030;
+    background-color: #4286f4;
     color: #fff;
     padding: 10px;
     margin-top: 10px;
@@ -59,3 +61,15 @@ nav.navbar
     top: 0px;
     width: 100vw;
   }
+td
+{
+	border: solid 1px #4286f4;
+	color: #f46e42;
+	transition-duration: .2s;
+}
+td:hover
+{
+	border: solid 1px #f46e42;
+	color: #49bc25;
+	font-size: 120%;
+}
