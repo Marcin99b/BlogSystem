@@ -73,3 +73,8 @@ td:hover
 	color: #49bc25;
 	font-size: 120%;
 }
+
+.loginmodal-container
+{
+	color: #222;
+}
