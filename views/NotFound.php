@@ -7,7 +7,7 @@ body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAA
 </style>
 
 
-<div class="container">
+<div class="container" style="color: #222;">
     <div class="row">
         <div class="col-md-12">
             <div class="error-template">
