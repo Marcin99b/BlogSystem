@@ -61,20 +61,39 @@ nav.navbar
     top: 0px;
     width: 100vw;
   }
+.table
+{
+	margin-top: 15px;
+	text-align: center;
+}
+tr
+{
+	color: #f46e42;
+}
+tr:hover
+{
+	font-weight: bold;
+	color: #4286f4;
+}
 td
 {
 	border: solid 1px #4286f4;
-	color: #f46e42;
-	transition-duration: .2s;
+	transition-duration: .1s;
 }
 td:hover
 {
 	border: solid 1px #f46e42;
 	color: #49bc25;
-	font-size: 120%;
+	font-size: 105%;
 }
 
 .loginmodal-container
 {
 	color: #222;
+}
+
+#bs-example-navbar-collapse-1
+{
+	background-color: #f8f8f8;
+	max-height: 100vh;
 }
