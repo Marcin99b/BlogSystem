@@ -19,7 +19,7 @@ $(function () {
 })
 </script>
 
-<table class="table table-hover " style="cursor: pointer; top: 50px; position: absolute;">
+<table class="table" style="cursor: pointer; top: 50px; position: absolute;">
   <thead>
     <tr class="success">
       <th>

@@ -19,7 +19,7 @@ $(function () {
 })
 </script>
 
-<table class="table table-hover" style="cursor: pointer; top: 50px; position: absolute;">
+<table class="table" style="cursor: pointer; top: 50px; position: absolute;">
   <tr class="success">
     <th>
       <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right"
