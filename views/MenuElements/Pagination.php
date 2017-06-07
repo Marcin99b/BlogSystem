@@ -16,9 +16,9 @@
           if($highPage <= $maxPage)
           {
             if ($this -> pageId == $i)
-              echo '<li class="active"><a href="Index/Blog/Page/'. $i .'">'. $i .'<span class="sr-only"></span></a></li>';
+              echo '<li class="active"><a href="'. $this -> path .'/'. $this -> controller .'/'. $this-> page .'/'. 'Page/'. $i .'">'. $i .'<span class="sr-only"></span></a></li>';
             else
-              echo '<li class="default"><a href="Index/Blog/Page/'. $i .'">'. $i .'<span class="sr-only"></span></a></li>';
+              echo '<li class="default"><a href="'. $this -> path .'/'. $this -> controller .'/'. $this-> page .'/'. 'Page/'. $i .'">'. $i .'<span class="sr-only"></span></a></li>';
           }
           else
           {

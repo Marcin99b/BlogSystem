@@ -38,18 +38,8 @@ class Posts extends Controller
 
   private function list($thisPageId)
   {
-    //Get info about pages
-    $pagesInfo = $this -> model -> pagination($thisPageId);
-    //Use info about pages, and get correct posts from database
-    $fromPage = $pagesInfo['from'];
-    $numberPage = $pagesInfo['number'];
+    $this -> pagination($thisPageId);
 
-    $show = $this -> model -> select($fromPage, $numberPage);
-
-    $this -> view -> pageId = $thisPageId;
-    $this -> view -> maxPage = $pagesInfo['max'];
-
-    $this -> view -> posts = $show;
     $this -> view -> pageTitle = $this -> blogName . " - Lista postów";
     $this -> view -> render();
   }
@@ -77,18 +67,9 @@ class Posts extends Controller
 		$postToDeleteId = $_POST['deleteId'];
 		$this -> model -> delete($postToDeleteId);
 	}
-	//Get info about pages
-	$pagesInfo = $this -> model -> pagination($thisPageId);
-	//Use info about pages, and get correct posts from database
-	$fromPage = $pagesInfo['from'];
-	$numberPage = $pagesInfo['number'];
+	
+	$this -> pagination($thisPageId);
 
-	$show = $this -> model -> select($fromPage, $numberPage);
-
-	$this -> view -> pageId = $thisPageId;
-	$this -> view -> maxPage = $pagesInfo['max'];
-
-    $this -> view -> posts = $show;
     $this -> view -> pageTitle = $this -> blogName . " - Usuń post";
     $this -> view -> render();
   }

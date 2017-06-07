@@ -18,21 +18,12 @@ class Index extends Controller
 
     $action = $this -> view -> page;
     $this -> $action($this -> pageMethodParam);
-  }
+}
 
-  private function blog($id)
+  private function blog($thisPageId)
   {
-    //Get info about pages
-    $pagesInfo = $this -> model -> pagination($id);
-    //Use info about pages, and get correct posts from database
-    $fromPage = $pagesInfo['from'];
-    $numberPage = $pagesInfo['number'];
+    $this -> pagination($thisPageId);
 
-    $show = $this -> model -> select($fromPage, $numberPage);
-    $this -> view -> pageId = $id;
-    $this -> view -> maxPage = $pagesInfo['max'];
-
-    $this -> view -> posts = $show;
     $this -> view -> pageTitle = $this -> blogName . ' - Strona główna';
     $this -> view -> render();
   }
