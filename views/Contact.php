@@ -18,7 +18,7 @@
                           <td>Email</td>
                           <td><a href="mailto:marcin.bigos99@gmail.com">marcin.bigos99@gmail.com</a></td>
                         </tr>
-                          <td>numer telefonu</td>
+                          <td>Numer telefonu</td>
                           <td>+48 (Wkrótce zostanie dodany)</td>
                       </tr>
                       </address>
