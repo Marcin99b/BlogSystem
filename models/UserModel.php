@@ -8,7 +8,7 @@ class UserModel extends Model
 
   }
 
-  public function loginUser($login, $password)
+  public function login($login, $password)
   {
       //Select password (and permission) as login in form
       //Script get permission, because this isn't dangerous, and one query is faster than two
@@ -30,7 +30,7 @@ class UserModel extends Model
       }
     header("Location: " . $this -> path);
   }
-  public function logoutUser()
+  public function logout()
   {
     unset($_SESSION['logged']);
     unset($_SESSION['userLogin']);
@@ -40,7 +40,7 @@ class UserModel extends Model
     header("Location: " . $this -> path);
   }
 
-  public function addUser($login, $password)
+  public function add($login, $password)
   {
     $hashPassword = password_hash($password, PASSWORD_BCRYPT);
 
@@ -50,18 +50,18 @@ class UserModel extends Model
       $userToAdd->execute();
   }
 
-  public function selectUser($query)
+  public function select($query)
   {
     $userToSelect = $this -> pdo ->query($query);
     return $userToSelect;
   }
 
-  public function editUser()
+  public function edit()
   {
 
   }
 
-  public function deleteUser($login, $password)
+  public function delete($login, $password)
   {
 
   }

@@ -30,7 +30,7 @@ class Posts extends Controller
 	    $content = $_POST['content'];
 	    $footer = $_POST['footer'];
 
-	    $this -> model -> addPost($title, $content, $footer);
+	    $this -> model -> add($title, $content, $footer);
     }
     $this -> view -> pageTitle = $this -> blogName . " - Dodaj post";
     $this -> view -> render();
@@ -44,7 +44,7 @@ class Posts extends Controller
     $fromPage = $pagesInfo['from'];
     $numberPage = $pagesInfo['number'];
 
-    $show = $this -> model -> selectPost($fromPage, $numberPage);
+    $show = $this -> model -> select($fromPage, $numberPage);
 
     $this -> view -> pageId = $thisPageId;
     $this -> view -> maxPage = $pagesInfo['max'];
@@ -64,7 +64,7 @@ class Posts extends Controller
 	    $content = $_POST['content'];
 	    $footer = $_POST['footer'];
 
-	    $this -> model -> updatePost($id, $title, $content, $footer);
+	    $this -> model -> update($id, $title, $content, $footer);
     }
     $this -> view -> pageTitle = $this -> blogName . " - Edytuj post";
     $this -> view -> render();
@@ -75,7 +75,7 @@ class Posts extends Controller
 	if(isset($_POST['deleteId']))
 	{
 		$postToDeleteId = $_POST['deleteId'];
-		$this -> model -> deletePost($postToDeleteId);
+		$this -> model -> delete($postToDeleteId);
 	}
 	//Get info about pages
 	$pagesInfo = $this -> model -> pagination($thisPageId);
@@ -83,7 +83,7 @@ class Posts extends Controller
 	$fromPage = $pagesInfo['from'];
 	$numberPage = $pagesInfo['number'];
 
-	$show = $this -> model -> selectPost($fromPage, $numberPage);
+	$show = $this -> model -> select($fromPage, $numberPage);
 
 	$this -> view -> pageId = $thisPageId;
 	$this -> view -> maxPage = $pagesInfo['max'];

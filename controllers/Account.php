@@ -34,7 +34,7 @@ class Account extends Controller
     {
       $login = $_POST['login'];
       $password = $_POST['password'];
-      $this -> model -> loginUser($login, $password);
+      $this -> model -> login($login, $password);
     }
     else
       $this -> view -> render();
@@ -42,7 +42,7 @@ class Account extends Controller
 
   private function logout()
   {
-    $this -> model -> logoutUser();
+    $this -> model -> logout();
   }
 
   private function registration()
@@ -54,8 +54,8 @@ class Account extends Controller
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        $this -> model -> addUser($login, $password);
-        $this -> model -> loginUser($login, $password);
+        $this -> model -> add($login, $password);
+        $this -> model -> login($login, $password);
       }
     }
     else
@@ -70,7 +70,7 @@ class Account extends Controller
 
   private function changePermission()
   {
-    $show = $this -> model -> selectUser('SELECT id, login, permission FROM `users` ORDER BY permission');
+    $show = $this -> model -> select('SELECT id, login, permission FROM `users` ORDER BY permission');
     $this -> view -> users = $show;
     $this -> view -> render();
   }

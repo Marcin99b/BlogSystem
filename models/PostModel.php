@@ -8,7 +8,7 @@ class PostModel extends Model
 
   }
 
-  public function addPost($title = null, $content = null, $footer = null)
+  public function add($title = null, $content = null, $footer = null)
   {
     if ($title != null && $content != null)
     {
@@ -43,7 +43,7 @@ class PostModel extends Model
     }
   }
   //Select post (write query in controller)
-  public function selectPost($fromPage, $numberPage)
+  public function select($fromPage, $numberPage)
   {
     $postToSelect = $this -> pdo ->query('SELECT
 			posts.id,
@@ -63,7 +63,7 @@ class PostModel extends Model
     return $postToSelect;
   }
 
-  public function updatePost($id = null, $title = null, $content = null, $footer = null)
+  public function update($id = null, $title = null, $content = null, $footer = null)
   {
     if ($id != null)
     {
@@ -91,7 +91,7 @@ class PostModel extends Model
     }
   }
 
-  public function deletePost($id)
+  public function delete($id)
   {
     //Delete from database
     $postToDelete = $this -> pdo -> prepare('DELETE FROM `posts` WHERE id = :postid ');
