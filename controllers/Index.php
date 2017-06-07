@@ -28,7 +28,7 @@ class Index extends Controller
     $fromPage = $pagesInfo['from'];
     $numberPage = $pagesInfo['number'];
 
-    $show = $this -> model -> selectPost($fromPage, $numberPage);
+    $show = $this -> model -> select($fromPage, $numberPage);
     $this -> view -> pageId = $id;
     $this -> view -> maxPage = $pagesInfo['max'];
 
