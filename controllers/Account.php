@@ -54,7 +54,7 @@ class Account extends Controller
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        $this -> model -> add($login, $password);
+        $this -> model -> create($login, $password);
         $this -> model -> login($login, $password);
       }
     }

@@ -40,7 +40,7 @@ class UserModel extends Model
     header("Location: " . $this -> path);
   }
 
-  public function add($login, $password)
+  public function create($login, $password)
   {
     $hashPassword = password_hash($password, PASSWORD_BCRYPT);
 
@@ -56,7 +56,7 @@ class UserModel extends Model
     return $userToSelect;
   }
 
-  public function edit()
+  public function update()
   {
 
   }

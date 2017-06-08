@@ -30,7 +30,7 @@ class Posts extends Controller
 	    $content = $_POST['content'];
 	    $footer = $_POST['footer'];
 
-	    $this -> model -> add($title, $content, $footer);
+	    $this -> model -> create($title, $content, $footer);
     }
     $this -> view -> pageTitle = $this -> blogName . " - Dodaj post";
     $this -> view -> render();
@@ -67,7 +67,7 @@ class Posts extends Controller
 		$postToDeleteId = $_POST['deleteId'];
 		$this -> model -> delete($postToDeleteId);
 	}
-	
+
 	$this -> pagination($thisPageId);
 
     $this -> view -> pageTitle = $this -> blogName . " - Usuń post";

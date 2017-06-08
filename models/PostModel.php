@@ -8,10 +8,12 @@ class PostModel extends Model
 
   }
 
-  public function add($title = null, $content = null, $footer = null)
+  public function create($title = null, $content = null, $footer = null)
   {
-    if ($title != null && $content != null)
+    if (null === $title || null === $content)
     {
+		return false;
+	}
     //Prepare data of date
     $date = getdate(date("U"));
       $day = $date['mday'];
@@ -40,7 +42,7 @@ class PostModel extends Model
       $postToAdd->bindParam(':autorId', $_SESSION['userId']);
       $postToAdd->execute();
 
-    }
+
   }
   //Select post (write query in controller)
   public function select($fromPage, $numberPage)
@@ -65,30 +67,32 @@ class PostModel extends Model
 
   public function update($id = null, $title = null, $content = null, $footer = null)
   {
-    if ($id != null)
-    {
-      //Edit textarea value
-      $text = trim($_POST['content']);
-        $textAr = explode("\n", $text);
-        $textAr = array_filter($textAr, 'trim');
-        $content = '';
-        foreach ($textAr as $line)
-        {
-          $content .= $line . '<br>';
-        }
-      // Add to database
-      $postToUpdate = $this -> pdo -> prepare( 'UPDATE `posts`
-		  SET
-			  `title` = :title,
-			  `content` = :content,
-			  `footer` = :footer
-		  WHERE id = :postid');
-        $postToUpdate->bindParam(':postid', $id);
-        $postToUpdate->bindParam(':title', $title);
-        $postToUpdate->bindParam(':content', $content);
-        $postToUpdate->bindParam(':footer', $footer);
-        $postToUpdate->execute();
-    }
+	if (null === $id)
+	{
+	return false;
+	}
+	//Edit textarea value
+	$text = trim($_POST['content']);
+	$textAr = explode("\n", $text);
+	$textAr = array_filter($textAr, 'trim');
+	$content = '';
+	foreach ($textAr as $line)
+	{
+	$content .= $line . '<br>';
+	}
+	// Add to database
+	$postToUpdate = $this -> pdo -> prepare( 'UPDATE `posts`
+			SET
+			`title` = :title,
+			`content` = :content,
+			`footer` = :footer
+			WHERE id = :postid');
+		$postToUpdate->bindParam(':postid', $id);
+		$postToUpdate->bindParam(':title', $title);
+		$postToUpdate->bindParam(':content', $content);
+		$postToUpdate->bindParam(':footer', $footer);
+		$postToUpdate->execute();
+
   }
 
   public function delete($id)
@@ -101,10 +105,9 @@ class PostModel extends Model
 
   public function pagination($idCurrentPage = 1)
   {
-	  //Default numbers posts in one page
-      $numberPostsToShow = 10;
+	//Default numbers posts in one page
+	$numberPostsToShow = 10;
 
-  	//
     $fromNumberPostInDatabase = ($idCurrentPage -1) * $numberPostsToShow;
 
     //Calc number of pages
