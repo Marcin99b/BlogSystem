@@ -1,9 +1,17 @@
 <?php
 //Coming soon
-interface CrudInterface
+interface CrudInterfaceController
 {
-	function create(){};
-	function select(){};
-	function update(){};
-	function delete(){};
+	private function create(){};
+	private function select(){};
+	private function update(){};
+	private function delete(){};
+}
+
+interface CrudInterfaceModel
+{
+	public function create(){};
+	public function select(){};
+	public function update(){};
+	public function delete(){};
 }
